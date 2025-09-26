@@ -1,0 +1,62 @@
+{
+  "heroSection": {
+    "title": "Anbiyams",
+    "description": "மனிதர்கள் அன்பில் இணைந்து உறவில் இணைந்து வரும் அமைப்பு அன்பியம் ஆகும். அன்பை நியமமாக்கும் அமைப்பு அன்பியம். கிறிஸ்தவத்தின் அச்சாணியான 'அன்பு'அகப்பவே' என்ற சொல்லை குறிக்கும். இது ஒரு சமூக அன்பு. மக்களின் பல்வேறு கரிசனைகளில் சமூக வடிவம் பெற வேண்டும். அன்பு சமூக வடிவம் பெறும் போது அன்பியம் ஆகிறது।"
+  },
+  "anbiyamsListSection": [
+    {
+      "id": 1,
+      "imageSrc": "/images/alponsa.jpg",
+      "title": "St. Alphonsa Anbiyam",
+      "link": "#"
+    },
+    {
+      "id": 2,
+      "imageSrc": "/images/sebastian.jpg",
+      "title": "St. Sebastian Anbiyam",
+      "link": "#"
+    },
+    {
+      "id": 3,
+      "imageSrc": "/images/infant.jpg",
+      "title": "Infant Jesus Anbiyam",
+      "link": "#"
+    },
+    {
+      "id": 4,
+      "imageSrc": "/images/imacu.jpg",
+      "title": "Immaculate Mary",
+      "link": "#"
+    },
+    {
+      "id": 5,
+      "imageSrc": "/images/arockiamatha.jpg",
+      "title": "Arockia Matha Anbiyam",
+      "link": "#"
+    },
+    {
+      "id": 6,
+      "imageSrc": "/images/joseph.jpg",
+      "title": "St. Joseph Anbiyam",
+      "link": "#"
+    },
+    {
+      "id": 7,
+      "imageSrc": "/images/fathima.jpg",
+      "title": "Fathima Matha Anbiyam",
+      "link": "#"
+    },
+    {
+      "id": 8,
+      "imageSrc": "/images/sacredheart.jpg",
+      "title": "Sacred Heart Anbiyam",
+      "link": "#"
+    },
+    {
+      "id": 9,
+      "imageSrc": "/images/christ.jpg",
+      "title": "Christ the King Anbiyam",
+      "link": "#"
+    }
+  ]
+}

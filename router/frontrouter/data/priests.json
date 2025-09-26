@@ -1,0 +1,18 @@
+{
+  "title": "Our Priests",
+  "backgroundImage": "/images/church2.jpg",
+  "priestsList": [
+    {
+      "id": 1,
+      "image": "/images/f1.jpg",
+      "nameTamil": "அருட்பணி. செபாஸ்டின் ஜெரோம்",
+      "titleTamil": "முதல் பங்குத்தந்தை"
+    },
+    {
+      "id": 2,
+      "image": "/images/f2.jpg",
+      "nameTamil": "அருட்பணி. அற்புதசாமி",
+      "titleTamil": "பங்குத்தந்தை"
+    }
+  ]
+}
