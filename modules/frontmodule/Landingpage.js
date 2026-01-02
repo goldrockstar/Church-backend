@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const heroSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
-    backgroundImage: { type: String, required: true },
+    backgroundImages: [{ type: String }] 
 });
 
 const readmoreSchema = new mongoose.Schema({
@@ -20,6 +20,13 @@ const eventSchema = new mongoose.Schema({
     title: { type: String, required: true },
     datetime: { type: String, required: true },
     location: { type: String, required: true },
+});
+
+const vasagamSchema = new mongoose.Schema({
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    reference: { type: String }, 
+    images: { type: String },
 });
 
 const foundationSchema = new mongoose.Schema({
@@ -95,6 +102,7 @@ const inboxMessageSchema = new mongoose.Schema({
 const Hero = mongoose.model('Hero', heroSchema);
 const Readmore = mongoose.model('Readmore', readmoreSchema);
 const Event = mongoose.model('Event', eventSchema);
+const Vasagam = mongoose.model('Vasagam', vasagamSchema);
 const Foundation = mongoose.model('Foundation', foundationSchema);
 const PriestsSection = mongoose.model('PriestsSection', priestsSectionSchema);
 const Bible = mongoose.model('Bible', bibleSchema);
@@ -106,4 +114,4 @@ const InboxMessage = mongoose.model('InboxMessage', inboxMessageSchema);
 
 
 // Export all models for use in your routes
-module.exports = { Hero, Readmore , Event, Foundation ,PriestsSection, Bible, Anbiyam, PrayEvent, Contact, Footer, InboxMessage };
+module.exports = { Hero, Readmore , Event, Vasagam , Foundation ,PriestsSection, Bible, Anbiyam, PrayEvent, Contact, Footer, InboxMessage };

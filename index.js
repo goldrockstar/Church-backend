@@ -30,7 +30,7 @@ app.use('/gallery', GalleryRoute);
 app.use('/church', adminrouter);
 
 // Database connection
-mongoose.connect('mongodb+srv://Lawrance:Macvel143@cluster0.ux5cvqo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0').then(() => {
+mongoose.connect('mongodb+srv://Lawrance:Jesus143@cluster0.ux5cvqo.mongodb.net/?appName=Cluster0').then(() => {
    console.log('Connected to MongoDB');
 }).catch((error) => {
    console.error('Database connection error:', error);

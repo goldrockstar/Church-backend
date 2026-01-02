@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Event = require('../../modules/frontmodule/Landingpage').Event;
+const Vasagam = require('../../modules/frontmodule/Landingpage').Vasagam;
 const Foundation = require('../../modules/frontmodule/Landingpage').Foundation;
 const Readmore = require('../../modules/frontmodule/Landingpage').Readmore;
 const Hero = require('../../modules/frontmodule/Landingpage').Hero;
@@ -19,6 +20,7 @@ router.get('/:section', async (req, res) => {
             case 'hero': data = await Hero.findOne({}); break;
             case 'readmore': data = await Readmore.findOne({}); break;
             case 'event': data = await Event.findOne({}); break;
+            case 'vasagam': data = await Vasagam.findOne({}); break;
             case 'foundation': data = await Foundation.findOne({}); break;
             case 'priests': data = await PriestsSection.findOne({}); break;
             case 'bible': data = await Bible.findOne({}); break;
@@ -44,10 +46,14 @@ router.get('/:section', async (req, res) => {
 // அனைத்துப் பிரிவுக்கான POST ரூட் (தரவை உருவாக்க)
 router.post('/admin/hero', async (req, res) => {
     const newHeroData = req.body;
+
+    // backgroundImages இருக்கிறதா என்றும் செக் செய்யலாம்
     if (!newHeroData || !newHeroData.title || !newHeroData.description) {
         return res.status(400).send('Hero title and description are required.');
     }
+
     try {
+        // findOneAndUpdate({}) என்பது ஏற்கனவே இருக்கும் டேட்டாவை மாற்றிவிடும் (Upsert: true)
         const result = await Hero.findOneAndUpdate({}, newHeroData, { new: true, upsert: true });
         res.status(201).json({ message: 'Hero section created Successfully', data: result });
     } catch (error) {
@@ -81,6 +87,23 @@ router.post('/admin/event', async (req, res) => {
     } catch (error) {
         console.error('Error creating event data:', error);
         res.status(500).send('Failed to create event section data.');
+    }
+});
+
+router.post('/admin/vasagam', async (req, res) => {
+    const newvasagamData = req.body;
+
+    // backgroundImages இருக்கிறதா என்றும் செக் செய்யலாம்
+    if (!newvasagamData || !newvasagamData.title || !newvasagamData.description || !newvasagamData.reference || !newvasagamData.images) {
+        return res.status(400).send('Vasagam title and description and reference and images are required.');
+    }
+
+    try {
+        const result = await Vasagam.findOneAndUpdate({}, newvasagamData, { new: true, upsert: true });
+        res.status(201).json({ message: 'Vasagam section created Successfully', data: result });
+    } catch (error) {
+        console.error('Error creating vasagam data:', error);
+        res.status(500).send('Failed to create vasagam section data.');
     }
 });
 
@@ -200,6 +223,7 @@ router.put('/admin/:section', async (req, res) => {
             case 'hero': updatedData = await Hero.findOneAndUpdate({}, newData, { new: true, upsert: true }); break;
             case 'readmore': updatedData = await Readmore.findOneAndUpdate({}, newData, { new: true, upsert: true }); break;
             case 'event': updatedData = await Event.findOneAndUpdate({}, newData, { new: true, upsert: true }); break;
+            case 'vasagam': updatedData = await Vasagam.findOneAndUpdate({}, newData, { new: true, upsert: true }); break;
             case 'foundation' : updatedData = await Foundation.findOneAndUpdate({}, newData, { new: true, upsert: true }); break;
             case 'priests': updatedData = await PriestsSection.findOneAndUpdate({}, newData, { new: true, upsert: true }); break;
             case 'bible': updatedData = await Bible.findOneAndUpdate({}, newData, { new: true, upsert: true }); break;
@@ -217,14 +241,15 @@ router.put('/admin/:section', async (req, res) => {
 });
 
 // பிரீஸ்ட்டை நீக்க DELETE ரூட்
-router.delete('/admin/section/:id', async (req, res) => {
-    const { id } = req.params;
+router.delete('/admin/:section/:id', async (req, res) => {
+    const { section ,id } = req.params;
     try {
         let deletedData;
-        switch (id) {
+        switch (section) {
             case 'hero': deletedData = await Hero.findOneAndDelete(); break;
             case 'readmore': deletedData = await Readmore.findOneAndDelete(); break;
             case 'event': deletedData = await Event.findOneAndDelete(); break;
+            case 'vasagam': deletedData = await Vasagam.findOneAndDelete(); break;
             case 'foundation': deletedData = await Foundation.findOneAndDelete(); break;
             case 'priests': deletedData = await PriestsSection.findOneAndDelete(); break;
             case 'bible': deletedData = await Bible.findOneAndDelete(); break;
@@ -234,10 +259,15 @@ router.delete('/admin/section/:id', async (req, res) => {
             case 'footer': deletedData = await Footer.findOneAndDelete(); break;
             default: return res.status(400).send('Invalid section');
         }
-        res.json({ message: `${id} deleted successfully`, data: deletedData });
+
+        if (!deletedData) {
+            return res.status(404).json({ message: "Data not found"});
+        }
+
+        res.json({ message: `${section} deleted successfully`, data: deletedData });
     } catch (error) {
-        console.error(`Error deleting ${id} data:`, error);
-        res.status(500).send(`Failed to delete ${id} data`);
+        console.error(`Error deleting ${section} data:`, error);
+        res.status(500).send(`Failed to delete ${section} data`);
     }
 });
 
